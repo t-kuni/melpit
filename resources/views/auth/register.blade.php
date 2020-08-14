@@ -37,10 +37,14 @@
                     @enderror
                 </div>
 
-                <div class="form-group mb-0">
+                <div class="form-group">
                     <button type="submit" class="btn btn-block btn-primary">
                         会員登録
                     </button>
+                </div>
+
+                <div>
+                    アカウントをお持ちの方は<a href="{{ route('login') }}">こちら</a>
                 </div>
             </form>
         </div>
