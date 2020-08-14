@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="h-100 d-flex justify-content-center align-items-center">
-    <div>
+    <div class="app app-only-content">
         <div class="d-flex justify-content-center">
             <a href="{{route('top')}}"><img src="/images/logo-1.png" /></a>
         </div>
