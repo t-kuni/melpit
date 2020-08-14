@@ -22,7 +22,7 @@
 <body class="h-100 d-flex justify-content-center align-items-center">
     <div>
         <div class="d-flex justify-content-center">
-            <a href="{{route('top')}}"><img src="images/logo-1.png" /></a>
+            <a href="{{route('top')}}"><img src="/images/logo-1.png" /></a>
         </div>
         <div class="d-flex justify-content-center mt-3">
             <div class="col-auto">
