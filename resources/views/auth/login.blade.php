@@ -2,9 +2,11 @@
 
 @section('content')
 <div class="container">
-    <div class="card p-5" style="width: 500px">
+    <div class="card" style="width: 500px">
         <div class="card-body">
-            <form method="POST" action="{{ route('login') }}">
+            <div class="font-weight-bold text-center border-bottom pb-3" style="font-size: 24px">ログイン</div>
+
+            <form method="POST" action="{{ route('login') }}" class="p-5">
                 @csrf
 
                 <div class="form-group">
