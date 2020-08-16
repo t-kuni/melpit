@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('', function () { return "ダミー"; })->name('top');
+Route::get('', 'ItemsController@showItems')->name('top');
 
 Auth::routes();
 
@@ -25,4 +25,6 @@ Route::prefix('mypage')
     ->group(function () {
         Route::get('edit-profile', 'ProfileController@showProfileEditForm')->name('mypage.edit-profile');
         Route::post('edit-profile', 'ProfileController@editProfile')->name('mypage.edit-profile');
+        Route::get('bought-items', function () { return "ダミー"; })->name('mypage.bought-items');
+        Route::get('sold-items', function () { return "ダミー"; })->name('mypage.sold-items');
     });
