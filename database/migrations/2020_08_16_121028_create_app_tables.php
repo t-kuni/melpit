@@ -46,6 +46,7 @@ class CreateAppTables extends Migration
             $table->string('image_file_name');
             $table->text('description');
             $table->unsignedInteger('price');
+            $table->string('state');
             $table->timestamps();
 
             $table->foreign('seller_id')->references('id')->on('users');
