@@ -15,20 +15,22 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-                <form class="form-inline">
+                <form class="form-inline" method="GET" action="{{ route('top') }}">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <select class="custom-select">
-                                <option selected>全て</option>
-                                <option value="0" class="font-weight-bold">カテゴリ１</option>
-                                <option value="1">　カテゴリ２</option>
-                                <option value="2">カテゴリ３</option>
-                                <option value="3">カテゴリ４</option>
+                            <select class="custom-select" name="category">
+                                <option value="">全て</option>
+                                @foreach ($categories as $category)
+                                    <option value="primary:{{$category->id}}" class="font-weight-bold" {{ $defaults['category'] == "primary:" . $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                                    @foreach ($category->secondaryCategories as $secondary)
+                                        <option value="secondary:{{$secondary->id}}" {{ $defaults['category'] == "secondary:" . $secondary->id ? 'selected' : ''}}>　{{$secondary->name}}</option>
+                                    @endforeach
+                                @endforeach
                             </select>
                         </div>
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                        <input type="text" name="keyword" class="form-control" value="{{$defaults['keyword']}}" aria-label="Text input with dropdown button" placeholder="キーワード検索">
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-outline-dark">
+                            <button type="submit" class="btn btn-outline-dark">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
