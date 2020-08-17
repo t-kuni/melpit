@@ -47,6 +47,7 @@ class SellController extends Controller
         $item->secondary_category_id = $request->input('category');
         $item->item_condition_id     = $request->input('condition');
         $item->price                 = $request->input('price');
+        $item->state                 = Item::STATE_SELLING;
         $item->save();
 
         return redirect()->back()
