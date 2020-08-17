@@ -15,4 +15,14 @@ class Item extends Model
     {
         return $this->belongsTo(SecondaryCategory::class);
     }
+
+    public function getIsStateSellingAttribute()
+    {
+        return $this->state === self::STATE_SELLING;
+    }
+
+    public function getIsStateBoughtAttribute()
+    {
+        return $this->state === self::STATE_BOUGHT;
+    }
 }
