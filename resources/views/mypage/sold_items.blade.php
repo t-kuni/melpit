@@ -38,7 +38,7 @@
                                 <span style="color: gray">まだ購入されていません</span>
                             </div>
                         </div>
-                        <a href="{{ route('item.buy', [1]) }}" class="stretched-link"></a>
+                        <a href="{{ route('items.item_detail', [1]) }}" class="stretched-link"></a>
                     </div>
                 @endforeach
             </div>

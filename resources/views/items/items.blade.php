@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="position-relative">
                     <img class="card-img-top" src="/storage/item-images/{{$item->image_file_name}}" alt="Card image cap">
-                    <div class="position-absolute py-2 px-3" style="left: 0; bottom: 20px; color: white; background-color: rgba(0, 0, 0, 0.70)">￥{{$item->price}}</div>
+                    <div class="position-absolute py-2 px-3" style="left: 0; bottom: 20px; color: white; background-color: rgba(0, 0, 0, 0.70)">￥{{number_format($item->price)}}</div>
                 </div>
                 <div class="card-body">
                     <small class="text-muted">{{$item->secondaryCategory->primaryCategory->name}} / {{$item->secondaryCategory->name}}</small>
