@@ -59,7 +59,7 @@
                             <div class="dropdown-item-text">
                                 <div class="row">
                                     <div class="col">売上金</div>
-                                    <div class="col-auto">￥0</div>
+                                    <div class="col-auto"><i class="fas fa-yen-sign"></i>0</div>
                                 </div>
                             </div>
                             <div class="dropdown-item-text">

@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('', 'ItemsController@showItems')->name('top');
-Route::get('items/{item}', function () { return 'ダミー'; })->name('items.item_detail');
+Route::get('items/{item}', 'ItemsController@showItemDetail')->name('item');
+Route::get('items/{item}/buy', function () { return "ダミー"; })->name('item.buy');
 
 Route::middleware('auth')
     ->group(function () {

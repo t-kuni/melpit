@@ -48,4 +48,10 @@ class ItemsController extends Controller
             $value
         );
     }
+
+    public function showItemDetail(Item $item)
+    {
+        return view('items.item_detail')
+            ->with('item', $item);
+    }
 }
