@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Payjp\Charge;
+use Payjp\Error\InvalidRequest;
+use Payjp\Payjp;
 
 class ItemsController extends Controller
 {
-    public function showItems(Request $request) {
+    public function showItems(Request $request)
+    {
         $query = Item::query();
 
         // カテゴリで絞り込み
@@ -44,7 +49,7 @@ class ItemsController extends Controller
     {
         return str_replace(
             [$char, '%', '_'],
-            [$char.$char, $char.'%', $char.'_'],
+            [$char . $char, $char . '%', $char . '_'],
             $value
         );
     }
@@ -53,5 +58,44 @@ class ItemsController extends Controller
     {
         return view('items.item_detail')
             ->with('item', $item);
+    }
+
+    public function showBuyItemForm(Item $item)
+    {
+        if (!$item->isStateSelling) {
+            abort(404);
+        }
+
+        return view('items.item_buy_form')
+            ->with('item', $item);
+    }
+
+    public function buyItem(Request $request, Item $item)
+    {
+        if (!$item->isStateSelling) {
+            abort(404);
+        }
+
+        $token = $request->input('card-token');
+
+        Payjp::setApiKey(config('payjp.secret_key'));
+        try {
+            Charge::create([
+                'card'     => $token,
+                'amount'   => $item->price,
+                'currency' => 'jpy'
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('type', 'danger')
+                ->with('message', '購入処理が失敗しました。');
+        }
+
+        $item->state     = Item::STATE_BOUGHT;
+        $item->bought_at = Carbon::now();
+        $item->save();
+
+        return redirect()->route('item', [$item->id])
+            ->with('message', '商品を購入しました。');
     }
 }

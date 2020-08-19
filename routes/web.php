@@ -17,7 +17,8 @@ Auth::routes();
 
 Route::get('', 'ItemsController@showItems')->name('top');
 Route::get('items/{item}', 'ItemsController@showItemDetail')->name('item');
-Route::get('items/{item}/buy', function () { return "ダミー"; })->name('item.buy');
+Route::get('items/{item}/buy', 'ItemsController@showBuyItemForm')->name('item.buy');
+Route::post('items/{item}/buy', 'ItemsController@buyItem')->name('item.buy');
 
 Route::middleware('auth')
     ->group(function () {
