@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{$item->name}} | 商品購入
+@endsection
+
 @section('content')
 <script src="https://js.pay.jp/v2/pay.js"></script>
 <div class="container">

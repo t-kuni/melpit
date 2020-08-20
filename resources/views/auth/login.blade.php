@@ -1,5 +1,9 @@
 @extends('layouts.app_only_content')
 
+@section('title')
+    ログイン
+@endsection
+
 @section('content')
 <div class="container">
     <div class="card" style="width: 500px">

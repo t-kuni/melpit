@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    購入した商品一覧
+@endsection
+
 @section('content')
     <div class="container">
 
