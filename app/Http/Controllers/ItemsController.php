@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Payjp\Charge;
-use Payjp\Error\InvalidRequest;
-use Payjp\Payjp;
 
 class ItemsController extends Controller
 {
@@ -81,25 +82,52 @@ class ItemsController extends Controller
 
         $token = $request->input('card-token');
 
-        Payjp::setApiKey(config('payjp.secret_key'));
         try {
-            Charge::create([
-                'card'     => $token,
-                'amount'   => $item->price,
-                'currency' => 'jpy'
-            ]);
+            $this->settlement($item->id, $item->seller->id, $user->id, $token);
         } catch (\Exception $e) {
+            Log::error($e);
             return redirect()->back()
                 ->with('type', 'danger')
                 ->with('message', '購入処理が失敗しました。');
         }
 
-        $item->state     = Item::STATE_BOUGHT;
-        $item->bought_at = Carbon::now();
-        $item->buyer_id  = $user->id;
-        $item->save();
-
         return redirect()->route('item', [$item->id])
             ->with('message', '商品を購入しました。');
+    }
+
+    private function settlement($itemID, $sellerID, $buyerID, $token)
+    {
+        DB::beginTransaction();
+
+        try {
+            $seller = User::lockForUpdate()->find($sellerID);
+            $item   = Item::lockForUpdate()->find($itemID);
+
+            if ($item->isStateBought) {
+                throw new \Exception('多重決済');
+            }
+
+            $item->state     = Item::STATE_BOUGHT;
+            $item->bought_at = Carbon::now();
+            $item->buyer_id  = $buyerID;
+            $item->save();
+
+            $seller->sales += $item->price;
+            $seller->save();
+
+            $charge = Charge::create([
+                'card'     => $token,
+                'amount'   => $item->price,
+                'currency' => 'jpy'
+            ]);
+            if (!$charge->captured) {
+                throw new \Exception('支払い確定失敗');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        DB::commit();
     }
 }
