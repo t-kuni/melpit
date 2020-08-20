@@ -8,7 +8,14 @@
         <table class="table table-bordered">
             <tr>
                 <th>出品者</th>
-                <td>{{$item->seller->name}}</td>
+                <td>
+                    @if (!empty($item->seller->avatar_file_name))
+                        <img src="/storage/avatars/{{$item->seller->avatar_file_name}}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+                    @else
+                        <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+                    @endif
+                    {{$item->seller->name}}
+                </td>
             </tr>
             <tr>
                 <th>カテゴリー</th>

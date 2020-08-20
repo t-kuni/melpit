@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Payjp\Charge;
 use Payjp\Error\InvalidRequest;
 use Payjp\Payjp;
@@ -72,6 +73,8 @@ class ItemsController extends Controller
 
     public function buyItem(Request $request, Item $item)
     {
+        $user = Auth::user();
+
         if (!$item->isStateSelling) {
             abort(404);
         }
@@ -93,6 +96,7 @@ class ItemsController extends Controller
 
         $item->state     = Item::STATE_BOUGHT;
         $item->bought_at = Carbon::now();
+        $item->buyer_id  = $user->id;
         $item->save();
 
         return redirect()->route('item', [$item->id])
