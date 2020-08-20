@@ -57,15 +57,18 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <div class="dropdown-item-text">
-                                <div class="row">
+                                <div class="row no-gutters">
                                     <div class="col">売上金</div>
-                                    <div class="col-auto"><i class="fas fa-yen-sign"></i>0</div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-yen-sign"></i>
+                                        <span>{{number_format($user->sales)}}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="dropdown-item-text">
-                                <div class="row">
+                                <div class="row no-gutters">
                                     <div class="col">出品数</div>
-                                    <div class="col-auto">0 個</div>
+                                    <div class="col-auto">{{number_format($user->soldItems->count())}} 個</div>
                                 </div>
                             </div>
                             <div class="dropdown-divider"></div>
