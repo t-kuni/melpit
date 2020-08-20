@@ -30,5 +30,6 @@
 </div>
 
 <div class="font-weight-bold text-center pb-3 pt-3" style="font-size: 24px">
-    <i class="fas fa-yen-sign"></i>{{number_format($item->price)}}
+    <i class="fas fa-yen-sign"></i>
+    <span class="ml-1">{{number_format($item->price)}}</span>
 </div>

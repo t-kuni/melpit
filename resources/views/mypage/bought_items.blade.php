@@ -21,7 +21,7 @@
                             <div class="card-title mt-2 font-weight-bold" style="font-size: 20px">{{$item->name}}</div>
                             <div>
                                 <i class="fas fa-yen-sign"></i>
-                                <span>{{number_format($item->price)}}</span>
+                                <span class="ml-1">{{number_format($item->price)}}</span>
                                 <i class="far fa-clock ml-3"></i>
                                 <span>{{$item->bought_at->format('Y年n月j日 H:i')}}</span>
                             </div>

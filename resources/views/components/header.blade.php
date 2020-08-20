@@ -61,7 +61,7 @@
                                     <div class="col">売上金</div>
                                     <div class="col-auto">
                                         <i class="fas fa-yen-sign"></i>
-                                        <span>{{number_format($user->sales)}}</span>
+                                        <span class="ml-1">{{number_format($user->sales)}}</span>
                                     </div>
                                 </div>
                             </div>
