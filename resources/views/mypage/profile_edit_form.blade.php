@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    プロフィール編集
+@endsection
+
 @section('content')
     <div id="profile-edit-form" class="container">
         <div class="row">

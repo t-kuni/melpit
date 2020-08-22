@@ -7,15 +7,15 @@ use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SoldItemsController extends Controller
+class BoughtItemsController extends Controller
 {
-    public function showSoldItems()
+    public function showBoughtItems()
     {
         $user = Auth::user();
 
-        $items = $user->soldItems()->orderBy('id', 'DESC')->get();
+        $items = $user->boughtItems()->orderBy('id', 'DESC')->get();
 
-        return view('mypage.sold_items')
+        return view('mypage.bought_items')
             ->with('items', $items);
     }
 }

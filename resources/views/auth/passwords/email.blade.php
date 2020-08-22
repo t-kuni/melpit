@@ -1,5 +1,9 @@
 @extends('layouts.app_only_content')
 
+@section('title')
+    パスワードリセットリクエスト
+@endsection
+
 @section('content')
 <div class="container">
     <div class="card" style="width: 500px">

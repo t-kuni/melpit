@@ -29,7 +29,7 @@ class SellRequest extends FormRequest
             'description' => ['required', 'string', 'max:2000'],
             'category'    => ['required', 'integer'],
             'condition'   => ['required', 'integer'],
-            'price'       => ['required', 'integer', 'min:100', 'max:99999999'],
+            'price'       => ['required', 'integer', 'min:100', 'max:9999999'],
         ];
     }
 
