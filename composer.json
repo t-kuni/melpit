@@ -9,15 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "ext-gd": "^7.3",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
+        "fzaninotto/faker": "^1.9.1",
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "2.5.1",
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.1.0",
-        "payjp/payjp-php": "^1.1",
-        "fzaninotto/faker": "^1.9.1"
+        "payjp/payjp-php": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
