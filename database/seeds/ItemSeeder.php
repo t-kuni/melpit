@@ -112,16 +112,18 @@ class ItemSeeder extends Seeder
         ];
 
         for ($i = 0; $i < 100; $i++) {
+            $state = $faker->randomElement($status);
+
             $item     = [
                 'seller_id'             => 1,
-                'buyer_id'              => 1,
+                'buyer_id'              => $state === Item::STATE_BOUGHT ? 1 : null,
                 'secondary_category_id' => $faker->randomElement($categories)->id,
                 'item_condition_id'     => $faker->randomElement($conditions)->id,
                 'name'                  => $faker->randomElement($names),
                 'image_file_name'       => '',
                 'description'           => $faker->realText,
                 'price'                 => $faker->numberBetween(100, 9999999),
-                'state'                 => $faker->randomElement($status),
+                'state'                 => $state,
                 'bought_at'             => $faker->dateTime,
                 'updated_at'            => Carbon::now(),
                 'created_at'            => Carbon::now(),
