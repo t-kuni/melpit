@@ -5,6 +5,7 @@ use App\Models\ItemCondition;
 use App\Models\SecondaryCategory;
 use App\Models\Item;
 use Faker\Factory as Faker;
+use Carbon\Carbon;
 
 class ItemSeeder extends Seeder
 {
@@ -122,6 +123,8 @@ class ItemSeeder extends Seeder
                 'price'                 => $faker->numberBetween(100, 9999999),
                 'state'                 => $faker->randomElement($status),
                 'bought_at'             => $faker->dateTime,
+                'updated_at'            => Carbon::now(),
+                'created_at'            => Carbon::now(),
             ];
             $buffer[] = $item;
 
