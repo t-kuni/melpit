@@ -125,7 +125,7 @@ class ItemSeeder extends Seeder
             ];
             $buffer[] = $item;
 
-            if (count($buffer) == 200) {
+            if (count($buffer) == 100) {
                 \Illuminate\Support\Facades\DB::table('items')->insert($buffer);
                 $buffer = [];
             }
